@@ -23,7 +23,11 @@ class notaFiscalBuilder:
         self.data = ''
         self.observacoes = ''
         self._todosItens=[]
+        self.todasAcoesASeremExecutadas=[]
     
+    def AdicionaAcao(self, novaAcao):
+        self.todasAcoesASeremExecutadas.append(novaAcao)
+        
     @property
     def razaoSocial(self):
         return self._razaoSocial
@@ -55,4 +59,30 @@ class notaFiscalBuilder:
         return self
 
     def constroi(self):
-        return notaFiscal(self.razaoSocial, self.cnpj, self.data, self._valorTotal, self._impostos, self._todosItens, self.observacoes)
+        notaFiscal = (self.razaoSocial, self.cnpj, self._valorTotal, self._impostos, self.data, self.observacoes)
+        
+        for acao in self.todasAcoesASeremExecutadas:
+            acao.executa(notaFiscal)
+
+        return notaFiscal
+    
+class acaoAposGerarNota:
+    def executa(self, notaFiscal):
+        pass
+
+class enviadorDeEmail(acaoAposGerarNota):
+    def executa(self, notaFiscal):
+        print('Enviando por e-mail')
+
+class notaFiscalDao(acaoAposGerarNota):
+    def executa(self, notaFiscal):
+        print('Salvando no banco')
+
+class enviadorDeSms(acaoAposGerarNota):
+    def executa(self, notaFiscal):
+        print('Enviando por SMS')
+
+class impressora(acaoAposGerarNota):
+    def executa(self, notaFiscal):
+        print('Imprimindo Nota Fiscal')
+
