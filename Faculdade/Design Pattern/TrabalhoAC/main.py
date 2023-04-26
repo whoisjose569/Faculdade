@@ -8,5 +8,6 @@ builder.AdicionaAcao(enviadorDeEmail())
 builder.AdicionaAcao(notaFiscalDao())
 builder.AdicionaAcao(enviadorDeSms())
 builder.AdicionaAcao(impressora())
+builder.AdicionaAcao(convertePDF())
 
 nf = notaFiscalBuilder().paraEmpresa('UNIVEM').comCnpj('123.456.789/0001-10').comItem(ItemDaNota("item 1", 100)).comItem(ItemDaNota("item 2", 200)).comObservacoes('entregar nf pessoalmente').naDataAtual().constroi()

@@ -86,3 +86,7 @@ class impressora(acaoAposGerarNota):
     def executa(self, notaFiscal):
         print('Imprimindo Nota Fiscal')
 
+class convertePDF(acaoAposGerarNota):
+    def executa(self, notaFiscal):
+        print('Convertendo para PDF')
+
