@@ -6,7 +6,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import confusion_matrix, accuracy_score
 
 # Ambiente: Leitura dos dados
-base = pd.read_csv("iris.data")
+base = pd.read_csv("Faculdade\Inteligencia Artificial\IrisClassifierBot\iris.data")
 
 # Sensores: Extração de dados
 previsores = base.iloc[:, :4].values
@@ -20,7 +20,7 @@ scaler = StandardScaler()
 previsores = scaler.fit_transform(previsores)
 
 # Método de Aprendizagem: Treinamento do modelo
-previsores_treinamento, previsores_teste, classe_treinamento, classe_teste = train_test_split(previsores, classe, test_size=0.30, random_state=0)
+previsores_treinamento, previsores_teste, classe_treinamento, classe_teste = train_test_split(previsores, classe, test_size=0.35, random_state=0)
 
 classificador = GaussianNB()
 classificador.fit(previsores_treinamento, classe_treinamento)
