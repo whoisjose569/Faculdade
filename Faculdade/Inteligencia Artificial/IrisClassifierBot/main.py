@@ -6,7 +6,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import confusion_matrix, accuracy_score
 
 # Ambiente: Leitura dos dados
-base = pd.read_csv("Faculdade\Inteligencia Artificial\IrisClassifierBot\iris.data")
+base = pd.read_csv("Inteligencia Artificial\IrisClassifierBot\iris.data")
 
 # Sensores: Extração de dados
 previsores = base.iloc[:, :4].values
@@ -34,5 +34,20 @@ acuracia = accuracy_score(classe_teste, previsoes)
 
 # Imprimir resultados
 print("Matriz de Confusão:")
-print(matriz)
+print("                                 |  Setosa  | Versicolor | Virginica  | Quantidade Real")
+for i in range(len(matriz)):
+    if i == 0:
+        print("Valores previstos como Setosa    |", end=" ")
+    elif i == 1:
+        print("Valores previstos como Versicolor|", end=" ")
+    elif i == 2:
+        print("Valores previstos como Virginica |", end=" ")
+    for j in range(len(matriz[i])):
+        print(f"{matriz[i][j]:<9}", end=" ")
+    if i == 0:
+        print(f"| {sum(matriz[i]):<14}")
+    elif i == 1:
+        print(f"| {sum(matriz[i]):<14}")
+    elif i == 2:
+        print(f"| {sum(matriz[i]):<14}")
 print(f"Acurácia: {acuracia * 100:.2f}% ")
